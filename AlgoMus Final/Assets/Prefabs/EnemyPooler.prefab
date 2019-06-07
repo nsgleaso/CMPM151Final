@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6377337208945269367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6377337208945269369}
+  - component: {fileID: 6377337208945269366}
+  m_Layer: 0
+  m_Name: EnemyPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6377337208945269369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377337208945269367}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 36.860176, y: 1.6462258, z: -0.1371293}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6377337208945269366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377337208945269367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade123c65e5999646a5127b5064b4faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneNote: {fileID: 7752797902100718368, guid: 81df345a9acfdb543a5221accb6f8d14, type: 3}
+  twoNote: {fileID: 807434393068931603, guid: e873284056787c841a63516886da702e, type: 3}
+  topSpawnPoint: {fileID: 6527165995649980970, guid: 873b09e0c6fc97440b3551fddf62c996,
+    type: 3}
+  midSpawnPoint: {fileID: 2445615842066276572, guid: 9996478db38f94148bf060290f432447,
+    type: 3}
+  botSpawnPoint: {fileID: 5348285004833367308, guid: 5bdf85bdfcab3604a990abe0e4b455cc,
+    type: 3}
