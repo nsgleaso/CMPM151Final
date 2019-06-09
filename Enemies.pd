@@ -1,0 +1,84 @@
+#N canvas 1060 231 1353 763 10;
+#X obj 19 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X msg 19 46 \; pd dsp \$1;
+#X obj 79 516 dac~;
+#X obj 80 488 *~;
+#X obj 140 399 vsl 15 128 0 1 0 0 empty empty Distance 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 92 265 *~ 1;
+#X floatatom 113 234 5 0 0 0 - - -;
+#X obj 900 507 dac~;
+#X obj 901 479 *~;
+#N canvas 0 50 450 300 (subpatch) 0;
+#X array array2 2051 float 0;
+#X coords 0 1 2050 -1 200 100 1 0 0;
+#X restore 1106 497 graph;
+#X obj 981 538 metro 100;
+#X obj 982 508 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 981 570 tabwrite~ array2;
+#X obj 897 353 expr~ tanh($v1);
+#X obj 263 412 expr~ max(min($v1 \, $f2) \, -$f2);
+#X obj 411 523 dac~;
+#X obj 412 495 *~;
+#N canvas 0 50 450 300 (subpatch) 0;
+#X array array3 2051 float 0;
+#X coords 0 1 2050 -1 200 100 1 0 0;
+#X restore 617 513 graph;
+#X obj 492 554 metro 100;
+#X obj 493 524 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 492 586 tabwrite~ array3;
+#X obj 903 328 *~;
+#X obj 79 88 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 78 206 vline~;
+#X msg 76 165 150 10 \, 0 50 60;
+#X obj 78 127 metro 400;
+#X msg 449 373 0.2424;
+#X msg 451 459 0.85;
+#X msg 935 445 0.2;
+#X msg 925 287 2;
+#X obj 55 233 osc~;
+#X obj 237 88 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 236 127 metro 400;
+#X msg 234 165 150 10 \, 0 50 60 \, 150 10 110 \, 0 50 160;
+#X text 93 41 Check one of these boxes depending on enemy. Left = single
+\, Right = double;
+#X text 85 584 Raise bar from 0->1 as enemy gets closer;
+#X text 962 31 Based on Distortion.pd;
+#X connect 0 0 1 0;
+#X connect 3 0 2 0;
+#X connect 3 0 2 1;
+#X connect 4 0 3 1;
+#X connect 5 0 3 0;
+#X connect 5 0 14 0;
+#X connect 5 0 21 0;
+#X connect 6 0 5 1;
+#X connect 8 0 7 0;
+#X connect 8 0 7 1;
+#X connect 8 0 12 0;
+#X connect 10 0 12 0;
+#X connect 11 0 10 0;
+#X connect 13 0 8 0;
+#X connect 14 0 16 0;
+#X connect 16 0 15 0;
+#X connect 16 0 15 1;
+#X connect 16 0 20 0;
+#X connect 18 0 20 0;
+#X connect 19 0 18 0;
+#X connect 21 0 13 0;
+#X connect 22 0 25 0;
+#X connect 23 0 30 0;
+#X connect 24 0 23 0;
+#X connect 25 0 24 0;
+#X connect 26 0 14 1;
+#X connect 27 0 16 1;
+#X connect 28 0 8 1;
+#X connect 29 0 21 1;
+#X connect 30 0 5 0;
+#X connect 31 0 32 0;
+#X connect 32 0 33 0;
+#X connect 33 0 23 0;
