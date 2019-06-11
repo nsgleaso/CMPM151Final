@@ -10,6 +10,6 @@ public class OriginPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x + 20, transform.position.y);
+        //transform.position = new Vector3(player.transform.position.x + 150, transform.position.y);
     }
 }

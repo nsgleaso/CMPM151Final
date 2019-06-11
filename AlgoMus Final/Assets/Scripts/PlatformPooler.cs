@@ -15,12 +15,6 @@ public class PlatformPooler : MonoBehaviour
     private GameObject shortPlat;
 
     [SerializeField]
-    private Transform topOrigin;
-    [SerializeField]
-    private Transform midOrigin;
-    [SerializeField]
-    private Transform botOrigin;
-
     private int tracker;
 
     public static PlatformPooler Instance;
@@ -31,7 +25,10 @@ public class PlatformPooler : MonoBehaviour
         Instance = this;
     }
 
-
+    //Checks if pool is empty
+    //if so, then call GrowPool() and continue
+    //if not, dequeue object from pool
+    //activate it and return it
     public GameObject GetFromPool()
     {
         if(availableObjects.Count == 0)
@@ -41,24 +38,59 @@ public class PlatformPooler : MonoBehaviour
 
         var instance = availableObjects.Dequeue();
 
-        //set to botOrigin for testing purposes
-        instance.transform.position = botOrigin.position;
         instance.SetActive(true);
         return instance;
     }
 
+
+    //Creates platform and sends it to AddPool()
     private void GrowPool()
     {
-        //longPlat chosen as test value
-        var instanceToAdd = Instantiate(longPlat);
-        AddPool(instanceToAdd);
+        //get random value to decide what 
+        //platform to make next
+        int platformChooser = Randomize();
+
+        if(platformChooser == 0)
+        {
+            var instanceToAdd = Instantiate(shortPlat);
+            AddPool(instanceToAdd);
+        }
+        else if(platformChooser == 1)
+        {
+            var instanceToAdd = Instantiate(medPlat);
+            AddPool(instanceToAdd);
+        }
+        else
+        {
+            var instanceToAdd = Instantiate(longPlat);
+            AddPool(instanceToAdd);
+        }
+        
+        
     }
 
     //Adds deactivated game objects to the queue to 
-    //make them available for use
+    //make them available for use later
     public void AddPool(GameObject platform)
     {
         platform.SetActive(false);
         availableObjects.Enqueue(platform);
+    }
+
+    private int Randomize()
+    {
+        int platformNumber = Random.Range(1, 10);
+        if (platformNumber < 4)
+        {
+            return 0;
+        }
+        else if (platformNumber > 3 && platformNumber < 7)
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
     }
 }

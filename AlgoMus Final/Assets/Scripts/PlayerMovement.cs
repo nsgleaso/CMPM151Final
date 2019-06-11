@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-
-
     private Rigidbody2D myRigidBody2D;
 
     [SerializeField]
@@ -29,10 +26,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform checkPosition;
 
+
+    public static bool isAlive;
+    private float timerDeath;
+
+
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody2D = GetComponent<Rigidbody2D>();
+        OSCHandler.Instance.Init();
+        OSCHandler.Instance.SendMessageToClient("PD", "/sound/theme/on", 1);
+
+        isAlive = true;
     }
 
     private void FixedUpdate()
@@ -44,6 +50,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isAlive == false)
+        {
+            timerDeath += Time.deltaTime;
+        }
+        if(timerDeath > 1)
+        {
+            KillPlayer();
+        }
         isGrounded = Physics2D.OverlapCircle(checkPosition.position, checkRadius, layer);
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
@@ -53,10 +67,24 @@ public class PlayerMovement : MonoBehaviour
             if(myRigidBody2D.velocity.y == 0)
             {
                 myRigidBody2D.velocity = new Vector2(myRigidBody2D.velocity.x, verticalMovement * jumpForce);
-                Debug.Log(myRigidBody2D.velocity.y);
             }
             
         }
         
+    }
+
+    private void KillPlayer()
+    {
+        OSCHandler.Instance.SendMessageToClient("PD", "/sound/theme/off", 2);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "OneNote" ||
+            collision.gameObject.tag == "TwoNote")
+        {
+            OSCHandler.Instance.SendMessageToClient("PD", "/sound/reload", 1);
+            isAlive = false;
+        }
     }
 }
