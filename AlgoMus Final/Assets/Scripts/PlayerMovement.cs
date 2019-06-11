@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private Transform checkPosition;
 
 
-    public static bool isAlive;
+    public static bool isAlive = true;
     private float timerDeath;
 
 
@@ -43,6 +43,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isAlive == false)
+        {
+            return;
+        }
         horizontalMovement = Input.GetAxis("Horizontal");
         myRigidBody2D.velocity = new Vector2(horizontalMovement * speed, myRigidBody2D.velocity.y);
     }
@@ -57,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         if(timerDeath > 1)
         {
             KillPlayer();
+            return;
         }
         isGrounded = Physics2D.OverlapCircle(checkPosition.position, checkRadius, layer);
 
@@ -75,8 +80,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void KillPlayer()
     {
-        OSCHandler.Instance.SendMessageToClient("PD", "/sound/theme/off", 2);
+        
+        //OSCHandler.Instance.SendMessageToClient("PD", "/sound/theme/off", 2);
+        OSCHandler.Instance.SendMessageToClient("PD", "/sound/enemy/distance", 0);
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

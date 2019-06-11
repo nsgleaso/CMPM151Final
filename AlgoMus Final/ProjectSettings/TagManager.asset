@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SecondaryCam
+  - Recycler
+  - MediumPlatform
+  - ShortPlatform
+  - LongPlatform
+  - OneNote
+  - TwoNote
+  - Bullet
+  - Destroyer
   layers:
   - Default
   - TransparentFX
@@ -14,9 +23,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
+  - Player
+  - Ground
+  - Background
   - 
   - 
   - 

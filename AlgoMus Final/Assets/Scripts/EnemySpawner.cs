@@ -27,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     {
         SpawnFromPool();
         lastPosition = player.transform.position;
+        OSCHandler.Instance.Init();
     }
 
     // Update is called once per frame
@@ -45,6 +46,19 @@ public class EnemySpawner : MonoBehaviour
     {
         var enemy = EnemyPooler.Instance.GetFromPool();
         Reposition(enemy);
+        if(enemy.tag == "OneNote")
+        {
+
+            OSCHandler.Instance.SendMessageToClient("PD", "/sound/enemy/single", 1);
+            OSCHandler.Instance.SendMessageToClient("PD", "/sound/enemy/distance", 0.75f);
+            OSCHandler.Instance.SendMessageToClient("PD", "/sound/enemy/double", 0);
+        }
+        else if (enemy.tag == "TwoNote")
+        {
+            OSCHandler.Instance.SendMessageToClient("PD", "/sound/enemy/double", 1);
+            OSCHandler.Instance.SendMessageToClient("PD", "/sound/enemy/distance", 0.25f);
+            OSCHandler.Instance.SendMessageToClient("PD", "/sound/enemy/single", 0);
+        }
     }
 
     //repositions spawned platform

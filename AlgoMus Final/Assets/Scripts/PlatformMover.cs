@@ -20,11 +20,9 @@ public class PlatformMover : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             collision.gameObject.transform.SetParent(transform);
-            Debug.Log("hit player");
         }
         else if(collision.gameObject.tag == "Recycler")
         {
-            Debug.Log("hit recycler");
             PlatformPooler.Instance.AddPool(gameObject);
         }
         
